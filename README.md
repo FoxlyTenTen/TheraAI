@@ -1,73 +1,145 @@
-# Welcome to your Lovable project
+# **TheraAI**  
 
-## Project info
+#### *"Where Empathy Meets Intelligence"*  
 
-**URL**: https://lovable.dev/projects/4fd4d91a-9481-43c7-9900-e87aa7eeb426
+---
 
-## How can I edit this code?
+## 📝 Overview  
+#### Accessible, stigma-free AI counseling assistant that provides warm, human-like support, personalized coping strategies, and consent-based escalation to professional help.  
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## 🔎 Problem
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/4fd4d91a-9481-43c7-9900-e87aa7eeb426) and start prompting.
+People don’t just lack counselors—they face stigma, access, and personalization barriers. Many struggle silently until issues escalate to crisis.
 
-Changes made via Lovable will be committed automatically to this repo.
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 💡 Solution
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- TheraAI is voice-friendly assistant that:
 
-Follow these steps:
+- Responds with empathetic, human-like tone (not robotic).
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- Suggests personalized coping (breathing, journaling, grounding).
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- Safely escalates with user consent to local hotlines/counselors.
 
-# Step 3: Install the necessary dependencies.
-npm i
+- Builds habit & trust via follow-ups, Memory Mirror, and progress celebrations.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+---
 
-**Edit a file directly in GitHub**
+## ✨ Key Features
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- Emotional Intelligence (Voice + Tone) – mood-sensitive voice, reflective listening; demo with 2 audio clips.
 
-**Use GitHub Codespaces**
+- Follow-ups & Memory Mirror – recalls past sessions safely and shows growth.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Progress & Celebrations – milestones, reports, achievement board; shows progress stats and keeps you motivated.
 
-## What technologies are used for this project?
+- Smart Escalation – detects risk, offers region-aware hotlines; consent-first handoff.  
+---
 
-This project is built with:
+## 🧭 Impact 
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Instant access, earlier help – 24/7, bilingual support; help in <60s; nudges make help-seeking a habit.
 
-## How can I deploy this project?
+Bigger system capacity (AI + human) – triages mild cases so experts focus on crises; shorter queues & faster care.
 
-Simply open [Lovable](https://lovable.dev/projects/4fd4d91a-9481-43c7-9900-e87aa7eeb426) and click on Share -> Publish.
+Population outcomes – anonymous trends inform campus/workplace policy; users leave calmer after sessions.
 
-## Can I connect a custom domain to my Lovable project?
+Equity & reach – voice-first, low-bandwidth, local hotlines → rural/low-income access across SEA & beyond.
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🚀 Novelty 
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Transformative access – from waitlists to instant, global 24/7 support.
+
+Empathy-driven AI – tone/voice adaptation that feels human.
+
+Responsible escalation – AI that knows its limits and steps back.
+
+Memory & growth reflection – not a one-off chatbot; supports long-term change.
+
+---
+
+## 🏗️ Solution Architecture 
+
+![Solution Architecture](./solution.png)  
+
+---
+
+## 🧰 Tech Stack
+
+Frontend: Next.js (React), TypeScript, Tailwind
+
+Backend: Node.js (Lambda handlers), API Gateway
+
+AI: Amazon Bedrock (+ Guardrails), optional Comprehend
+
+Data: DynamoDB, S3
+
+Auth/Users: Cognito
+
+Infra: SAM / CloudFormation, CloudWatch, SNS/Pinpoint
+
+---
+
+## 🔐 Safety & Data
+
+Guardrails-first: block unsafe input before LLM calls to reduce risk & cost.
+
+Consent-based escalation: user confirms before hotline/counselor handoff.
+
+Minimal data: session-oriented memory; anonymous metrics for insights.
+
+---
+
+## 💼 Commercialization (B2B)
+
+Who pays: Universities, HR/EAP programs, NGOs/Gov.
+
+What they get: TheraAI access, Admin analytics, Crisis directory, onboarding.
+
+How we charge: Monthly/annual tiers by users + add-ons (counselor dashboard, WhatsApp check-ins, extra languages).
+
+---
+
+## 🌱 Sustainability
+
+Financial: Recurring B2B > serverless infra cost; pilots → annual → multi-campus.
+
+Operational: Serverless AWS, Guardrails, bilingual content, hotline DB upkeep.
+
+Social/Ethical: Privacy-by-design; consent-first; cultural sensitivity (EN/BM).
+
+Environmental: On-demand compute; CDN caching.
+
+---
+
+## 💸 Cost Optimization (Low-Tier Friendly)
+
+Short prompts + cached content to trim Bedrock tokens.
+
+Guardrails-first to avoid expensive/unsafe calls.
+
+---
+
+## 🗺️ Roadmap
+
+MVP: EN/BM empathy + escalation + progress tracking.
+
+Pilot: 1 campus/SME; measure outcomes (help-seeking, distress reduction).
+
+Scale: Counselor dashboard, more languages/voices, regional hotlines.
+
+---
+
+##📄 Project Info  
+**Project Title:** TheraAI 
+**Team Name:** Nakama Dev  
+**Team Members:** Izzul, Rafiq, Zaim, Adli, Yasin  
+**Institution:** Universiti Tenaga Nasional (UNITEN)  
+**Event:** Great Malaysia AI Hackathon 2025
