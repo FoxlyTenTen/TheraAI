@@ -15,7 +15,7 @@ const Navigation = () => {
               <Brain className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">MindfulAI</h1>
+              <h1 className="text-xl font-bold text-foreground">TheraAI</h1>
               <p className="text-xs text-muted-foreground">Your AI Counseling Companion</p>
             </div>
           </div>

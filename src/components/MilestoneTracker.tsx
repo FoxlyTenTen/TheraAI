@@ -1,157 +1,107 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import { Trophy, Target, Calendar, Star, CheckCircle, Clock } from "lucide-react";
-import progressImage from "@/assets/progress-illustration.jpg";
+import { useState } from "react";
+
+type Milestone = {
+  phase: string;
+  duration: string;
+  goal: string;
+  steps: string[];
+  completedSteps?: boolean[]; // track completion of each step
+};
 
 const MilestoneTracker = () => {
-  const milestones = [
-    {
-      id: 1,
-      title: "First Session Completed",
-      description: "Complete your first counseling session",
-      progress: 100,
-      status: "completed",
-      date: "2 days ago",
-      icon: CheckCircle,
-    },
-    {
-      id: 2,
-      title: "Week Streak",
-      description: "Maintain daily check-ins for 7 days",
-      progress: 85,
-      status: "in-progress",
-      date: "In progress",
-      icon: Calendar,
-    },
-    {
-      id: 3,
-      title: "Anxiety Management",
-      description: "Complete anxiety reduction exercises",
-      progress: 60,
-      status: "in-progress",
-      date: "Started yesterday",
-      icon: Target,
-    },
-    {
-      id: 4,
-      title: "Mindfulness Master",
-      description: "Practice mindfulness for 30 days",
-      progress: 25,
-      status: "in-progress",
-      date: "Started 1 week ago",
-      icon: Star,
-    },
-  ];
+  const [loading, setLoading] = useState(false);
+  const [milestones, setMilestones] = useState<Milestone[]>([]);
+
+  const fetchMilestones = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch("http://localhost:3000/api/milestones");
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      const data: Milestone[] = await response.json();
+
+      // Initialize completedSteps array
+      setMilestones(
+        data.map(m => ({
+          ...m,
+          completedSteps: new Array(m.steps.length).fill(false),
+        }))
+      );
+    } catch (error) {
+      console.error("❌ Error fetching milestones:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const toggleStep = (milestoneIndex: number, stepIndex: number) => {
+    setMilestones(prev =>
+      prev.map((m, i) => {
+        if (i === milestoneIndex && m.completedSteps) {
+          const updatedSteps = [...m.completedSteps];
+          updatedSteps[stepIndex] = !updatedSteps[stepIndex];
+          return { ...m, completedSteps: updatedSteps };
+        }
+        return m;
+      })
+    );
+  };
+
+  const isPhaseCompleted = (m: Milestone) =>
+    m.completedSteps?.every(step => step) ?? false;
 
   return (
-    <section id="milestones" className="py-16 px-4">
-      <div className="container mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            Track Your <span className="text-primary">Progress</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Celebrate your achievements and stay motivated with our milestone tracking system.
-            Every step forward is progress worth celebrating.
-          </p>
-        </div>
+    <div style={{ textAlign: "center", marginTop: "20px" }}>
+      <button
+        onClick={fetchMilestones}
+        disabled={loading}
+        style={{ padding: "10px 20px", marginBottom: "20px" }}
+      >
+        {loading ? "Loading..." : "Get Milestones"}
+      </button>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Progress Overview */}
-          <Card className="lg:col-span-1 bg-gradient-card border-0 shadow-card">
-            <CardHeader className="text-center">
-              <div className="mx-auto w-32 h-32 rounded-full overflow-hidden mb-4">
-                <img
-                  src={progressImage}
-                  alt="Progress illustration"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <CardTitle className="text-2xl">Your Journey</CardTitle>
-              <CardDescription>Overall progress summary</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-primary mb-2">72%</div>
-                <p className="text-sm text-muted-foreground">Overall Progress</p>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">Milestones</span>
-                  <Badge variant="secondary">4 Active</Badge>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">Completed</span>
-                  <Badge variant="outline">1 of 4</Badge>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">Streak</span>
-                  <Badge className="bg-gradient-progress text-white">6 days</Badge>
-                </div>
-              </div>
+      <div style={{ display: "grid", gap: "20px", maxWidth: "800px", margin: "0 auto" }}>
+        {milestones.map((m, idx) => (
+          <div
+            key={idx}
+            style={{
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              padding: "20px",
+              textAlign: "left",
+              backgroundColor: isPhaseCompleted(m) ? "#e6ffe6" : "#fff",
+              boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+            }}
+          >
+            <h3 style={{ marginBottom: "8px", color: "#333" }}>{m.phase}</h3>
+            <p><strong>Duration:</strong> {m.duration}</p>
+            <p><strong>Goal:</strong> {m.goal}</p>
 
-              <Button variant="progress" className="w-full">
-                <Trophy className="h-4 w-4 mr-2" />
-                View Achievements
-              </Button>
-            </CardContent>
-          </Card>
+            <div>
+              <strong>Steps:</strong>
+              <ul style={{ listStyle: "none", paddingLeft: 0 }}>
+                {m.steps.map((step, stepIdx) => (
+                  <li key={stepIdx} style={{ marginBottom: "6px" }}>
+                    <label style={{ cursor: "pointer" }}>
+                      <input
+                        type="checkbox"
+                        checked={m.completedSteps?.[stepIdx] || false}
+                        onChange={() => toggleStep(idx, stepIdx)}
+                        style={{ marginRight: "8px" }}
+                      />
+                      {step}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Milestones List */}
-          <div className="lg:col-span-2 space-y-4">
-            {milestones.map((milestone) => {
-              const Icon = milestone.icon;
-              return (
-                <Card key={milestone.id} className="shadow-card hover:shadow-glow transition-all duration-300">
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-start gap-4">
-                        <div className={`p-3 rounded-lg ${
-                          milestone.status === 'completed' 
-                            ? 'bg-gradient-progress' 
-                            : 'bg-primary-soft'
-                        }`}>
-                          <Icon className={`h-6 w-6 ${
-                            milestone.status === 'completed'
-                              ? 'text-white'
-                              : 'text-primary'
-                          }`} />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-lg font-semibold mb-1">{milestone.title}</h3>
-                          <p className="text-muted-foreground mb-3">{milestone.description}</p>
-                          
-                          <div className="space-y-2">
-                            <div className="flex justify-between items-center text-sm">
-                              <span>Progress</span>
-                              <span className="font-medium">{milestone.progress}%</span>
-                            </div>
-                            <Progress value={milestone.progress} className="h-2" />
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="text-right">
-                        <Badge variant={milestone.status === 'completed' ? 'default' : 'secondary'}>
-                          {milestone.status === 'completed' ? 'Completed' : 'In Progress'}
-                        </Badge>
-                        <div className="flex items-center gap-1 mt-2 text-xs text-muted-foreground">
-                          <Clock className="h-3 w-3" />
-                          {milestone.date}
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
+            {isPhaseCompleted(m) && (
+              <p style={{ color: "#4caf50", fontWeight: "bold" }}>Phase Completed ✅</p>
+            )}
           </div>
-        </div>
+        ))}
       </div>
-    </section>
+    </div>
   );
 };
 

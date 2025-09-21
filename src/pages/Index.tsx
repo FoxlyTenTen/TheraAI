@@ -19,7 +19,7 @@ const Index = () => {
       <footer className="py-12 px-4 bg-card border-t border-border">
         <div className="container mx-auto text-center">
           <div className="mb-6">
-            <h3 className="text-lg font-semibold mb-2">MindfulAI</h3>
+            <h3 className="text-lg font-semibold mb-2">TheraAI</h3>
             <p className="text-muted-foreground">Your AI-powered journey to mental wellness</p>
           </div>
           <div className="flex justify-center gap-8 text-sm text-muted-foreground">

@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MessageCircle, Calendar, Clock, Sparkles, Play } from "lucide-react";
+import { Link } from "react-router-dom"; // ✅ import Link
 
 const SessionDashboard = () => {
   return (
@@ -23,9 +24,10 @@ const SessionDashboard = () => {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
+                  {/* ✅ Replace router.push with Link */}
                   <CardTitle className="text-2xl flex items-center gap-2">
                     <Sparkles className="h-6 w-6 text-primary" />
-                    Start New Session
+                    <Link to="/session">Start New Session</Link>
                   </CardTitle>
                   <CardDescription>
                     Begin a personalized counseling conversation
@@ -42,7 +44,7 @@ const SessionDashboard = () => {
                   <MessageCircle className="h-8 w-8 text-primary mb-2" />
                   <h3 className="font-semibold">Chat Therapy</h3>
                   <p className="text-sm text-muted-foreground">
-                    Text-based conversation
+                    AI Voice-based conversation
                   </p>
                 </div>
                 <div className="p-4 bg-background/50 rounded-lg">
@@ -62,9 +64,12 @@ const SessionDashboard = () => {
               </div>
               
               <div className="flex gap-4">
-                <Button variant="hero" className="flex-1">
-                  <Play className="h-4 w-4 mr-2" />
-                  Start Session Now
+                {/* ✅ Use Link inside Button */}
+                <Button asChild variant="hero" className="flex-1">
+                  <Link to="/session">
+                    <Play className="h-4 w-4 mr-2" />
+                    Start Session Now
+                  </Link>
                 </Button>
                 <Button variant="therapeutic">
                   Schedule Later
