@@ -15,7 +15,7 @@ const MilestoneTracker = () => {
   const fetchMilestones = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:3000/api/milestones");
+      const response = await fetch("https://theraaiserver-1.onrender.com/api/milestones");
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       const data: Milestone[] = await response.json();
 
