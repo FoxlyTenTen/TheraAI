@@ -9,6 +9,9 @@
 
 ---
 
+## 🚀 Live Demo
+[![Live Demo](https://img.shields.io/badge/Live%20App-Amplify-blue?style=for-the-badge&logo=amazon-aws)](https://main.d2mgy2uaft7oez.amplifyapp.com/)
+
 ## 🔎 Problem
 
 People don’t just lack counselors—they face stigma, access, and personalization barriers. Many struggle silently until issues escalate to crisis.
@@ -73,18 +76,13 @@ Memory & growth reflection – not a one-off chatbot; supports long-term change.
 
 ## 🧰 Tech Stack
 
-Frontend: Next.js (React), TypeScript, Tailwind
+Frontend: React, TypeScript, Tailwind
 
-Backend: Node.js (Lambda handlers), API Gateway
+Backend: Node.js, n8n
 
 AI: Amazon Bedrock (+ Guardrails), optional Comprehend
 
-Data: DynamoDB, S3
-
 Auth/Users: Cognito
-
-Infra: SAM / CloudFormation, CloudWatch, SNS/Pinpoint
-
 ---
 
 ## 🔐 Safety & Data
