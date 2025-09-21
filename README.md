@@ -67,7 +67,7 @@ Memory & growth reflection – not a one-off chatbot; supports long-term change.
 
 ## 🏗️ Solution Architecture 
 
-![Solution Architecture](./solutionArch.jpeg)  
+![Solution Architecture](./solutionArch.jpg)  
 
 ---
 
