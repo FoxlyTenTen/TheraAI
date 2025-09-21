@@ -109,7 +109,7 @@ How we charge: Monthly/annual tiers by users + add-ons (counselor dashboard, Wha
 
 Financial: Recurring B2B > serverless infra cost; pilots → annual → multi-campus.
 
-Operational: Serverless AWS, Guardrails, bilingual content, hotline DB upkeep.
+Operational: Serverless AWS, Guardrails, bilingual content.
 
 Social/Ethical: Privacy-by-design; consent-first; cultural sensitivity (EN/BM).
 
